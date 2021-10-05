@@ -1,1 +1,7 @@
-.Form {}
+.row {
+    margin: 20px;
+}
+
+#vehicleValue{
+    width: 100%;
+}
