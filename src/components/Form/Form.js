@@ -27,6 +27,16 @@ function updateValue(){
   $("#value").html(`$`+vehicleValue);
 }
 
+function validateFormData(formData){
+  for (const [key,value] of Object.entries(formData)){
+    if (value === ""){
+      alert(`Please enter ${key}!`);
+      return false;
+    }
+  }
+  return true;
+}
+
 const callMockAPI = (e) => {
 
 e.preventDefault();
@@ -47,6 +57,10 @@ e.preventDefault();
     vehicleValue,
     telephone,
     registrationDate
+  }
+
+  if(!validateFormData(formData)){
+    return;
   }
   
   console.log(formData);
