@@ -5,3 +5,9 @@
 #vehicleValue{
     width: 100%;
 }
+
+#adminButton{
+    background-color: green;
+    border-color: green;
+    margin: auto;
+}

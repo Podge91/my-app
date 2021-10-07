@@ -1,8 +1,10 @@
 import React,{useState} from 'react';
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Form.css';
 import axios from 'axios';
 import $ from 'jquery';
+import { Button } from 'bootstrap';
 
 
 function Form(){
@@ -73,6 +75,7 @@ e.preventDefault();
 }
   
   return( 
+<div>
 <form>
   <div class="form-group row">
     <label for="prefix" class="col-4 col-form-label">Prefix</label> 
@@ -204,7 +207,17 @@ e.preventDefault();
     </div>
   </div>
 </form>
-);
-}
 
+<div class="d-flex justify-content-center">
+      <Link to="/admin">
+        <button class="btn btn-primary" id="adminButton">
+          <p>Admin</p>
+        </button>
+      </Link>
+</div>
+
+</div>
+);
+
+}
 export default Form;
