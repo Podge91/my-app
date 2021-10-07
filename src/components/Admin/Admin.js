@@ -8,13 +8,17 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
+import Alert from 'react-bootstrap/Alert'
+
 import axios from 'axios';
 
 function Admin(){
   
   const [tableData,setTableData] = useState([]);
   const [ID,setID] = useState('');
-  
+  const [show, setShow] = useState(false);
+  const [phoneNumber,setPhoneNumber] = useState('');
+
   function getUser(e){
     e.preventDefault();
     console.log(ID);
@@ -26,6 +30,68 @@ function Admin(){
         console.log(response.data);
         setTableData(response.data);
       })
+  }
+
+  function getUserDelete(e){
+    e.preventDefault();
+    console.log(ID);
+    setShow(true);
+
+    const endpointURL = `https://6151d1934a5f22001701d46f.mockapi.io/api/capston/${ID}`;
+
+    axios.get(endpointURL)
+      .then((response)=>{
+        console.log(response.data);
+        setTableData(response.data);
+      })
+
+  }
+
+  function AlertDismissibleExample() {
+  
+    if (show) {
+      return (
+        <Alert show={show} variant="danger">
+        <Alert.Heading>Caution!</Alert.Heading>
+        <p>
+          Are you sure you want to delete the user?
+        </p>
+        <hr />
+        <div className="d-flex justify-content-end">
+          <Button onClick={() => {setShow(false);
+                                  deleteUser();}} 
+                                  variant="outline-danger">
+            Delete!
+          </Button>
+        </div>
+      </Alert>
+      );
+    }
+    return null;
+  }
+
+  function deleteUser(){
+    if(tableData){
+      const endpointURL = `https://6151d1934a5f22001701d46f.mockapi.io/api/capston/${ID}`;
+
+      axios.delete(endpointURL)
+      .then(()=>{window.alert("User Deleted!")})
+      .catch((err)=>{console.log(err)});
+    }
+  }
+
+  function putUserPhone(e){
+    e.preventDefault();
+
+    const endpointURL = `https://6151d1934a5f22001701d46f.mockapi.io/api/capston/${ID}`;
+
+    if(phoneNumber.length === 11){
+      axios.put(endpointURL,{telephone:phoneNumber})
+        .then((response)=>{console.log(response)})
+        .catch((err)=>{console.log(err)});
+    }else{
+      window.alert("Invalid Phone Number!");
+    }
   }
   
 
@@ -74,25 +140,34 @@ function Admin(){
   <Accordion.Item eventKey="1">
     <Accordion.Header>Delete User</Accordion.Header>
     <Accordion.Body>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.
+      <Form>
+          <Form.Group className="mb-3" controlId="formUserID">
+        <Form.Label>User ID:</Form.Label>
+        <Form.Control type="text" placeholder="ID" onChange={e=>setID(e.target.value)}/>
+      </Form.Group>
+      <Button variant="primary" type="submit" onClick={getUserDelete}>
+        Submit
+      </Button>
+      </Form>
+      <AlertDismissibleExample />
     </Accordion.Body>
   </Accordion.Item>
   <Accordion.Item eventKey="3">
     <Accordion.Header>Update User</Accordion.Header>
     <Accordion.Body>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.
+    <Form>
+      <Form.Group className="mb-3" controlId="formUserID">
+        <Form.Label>User ID:</Form.Label>
+        <Form.Control type="text" placeholder="ID" onChange={e=>setID(e.target.value)}/>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formUserID">
+        <Form.Label>Phone Number: </Form.Label>
+        <Form.Control type="number" placeholder="ID" onChange={e=>setPhoneNumber(e.target.value)}/>
+      </Form.Group>
+      <Button variant="primary" type="submit" onClick={putUserPhone}>
+        Submit
+      </Button>
+      </Form>
     </Accordion.Body>
   </Accordion.Item>
 </Accordion>);
