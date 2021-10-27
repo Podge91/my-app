@@ -11,3 +11,15 @@
     border-color: green;
     margin: auto;
 }
+
+.header{
+    text-align: center;
+    background-color: blue;
+    color: white;
+    padding: 20px;
+}
+
+#contain{
+    width: 75%;
+    margin: 0 auto;
+}
