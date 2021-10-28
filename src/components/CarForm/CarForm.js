@@ -1,5 +1,6 @@
 import React  from 'react';
 import  TextField  from '../TextField/TextField';
+import RangeField from '../RangeField/RangeField';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Form.css';
 import axios from 'axios';
@@ -22,7 +23,7 @@ function CarForm(){
     additionalDrivers: Yup.string().required('Required'),
     commercial: Yup.string().required('Required'),
     registeredState: Yup.string().required('Required'),
-    vehicleValue: Yup.string().required('Required'),
+    vehicleValue: Yup.number().required('Required').positive().integer(),
     telephone: Yup.string().required('Required'),
     registrationDate: Yup.string().required('Required'),
     postcode: Yup.string().required('Required')
@@ -63,7 +64,7 @@ function CarForm(){
       <TextField label="Do you wish to add additional Drivers?" name="additionalDrivers" type="text"/>
       <TextField label="Will the vehicle be used for commercial purposes?" name="commercial" type="text"/>
       <TextField label="Will the vehicle be used outside the registered state?" name="registeredState" type="text"/>
-      <TextField label="What is the value of the vehicle?" name="vehicleValue" type="text"/>
+      <RangeField label="What is the value of the vehicle?" name="vehicleValue" type="range" min="0" max ="50000" step="1000"/>
       <TextField label="Telephone Number" name="telephone" type="text"/>
       <TextField label="What is the date the vehicle was first registered?" name="registrationDate" type="text"/>
       <button className="btn btn-dark mt-3">Submit</button>
