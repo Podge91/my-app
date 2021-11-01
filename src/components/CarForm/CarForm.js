@@ -2,11 +2,14 @@ import React  from 'react';
 import  TextField  from '../TextField/TextField';
 import RangeField from '../RangeField/RangeField';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import Navbar from 'react-bootstrap/Navbar'
 import './Form.css';
 import axios from 'axios';
 import * as Yup from 'yup';
+import logo from './logo.png';
 
 import {Formik,Form, yupToFormErrors} from 'formik';
+import { Container } from 'react-bootstrap';
 
 
 function CarForm(){
@@ -49,7 +52,14 @@ function CarForm(){
 }}validationSchema={validate} >
   {formik =>(
     <div>
-      <h1 className="my-4 font-wright-bold-display-4">Car Quote Form</h1>
+      <Navbar bg="primary" variant="dark">
+        <Container>
+          <Navbar.Brand>
+            <img src={logo} alt="Allstate" height="100"/>
+          </Navbar.Brand>
+        </Container>
+      </Navbar>
+      <Container><h1 className="my-4 font-wright-bold-display-4">Car Quote Form</h1>
       {console.log(formik.values)}
     <Form>
       <TextField label="Prefix" name="prefix" type="text"/>
@@ -60,7 +70,7 @@ function CarForm(){
       <TextField label="City" name="city" type="text"/>
       <TextField label="Postcode" name="postcode" type="text"/>
       <TextField label="Vehicle Type" name="vehicleType" type="text"/>
-      <TextField label="engineSize" name="engineSize" type="text"/>
+      <TextField label="Engine Size" name="engineSize" type="text"/>
       <TextField label="Do you wish to add additional Drivers?" name="additionalDrivers" type="text"/>
       <TextField label="Will the vehicle be used for commercial purposes?" name="commercial" type="text"/>
       <TextField label="Will the vehicle be used outside the registered state?" name="registeredState" type="text"/>
@@ -68,7 +78,7 @@ function CarForm(){
       <TextField label="Telephone Number" name="telephone" type="text"/>
       <TextField label="What is the date the vehicle was first registered?" name="registrationDate" type="text"/>
       <button className="btn btn-dark mt-3">Submit</button>
-    </Form> 
+    </Form> </Container>
     </div>
    
   )}
