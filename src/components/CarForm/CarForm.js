@@ -10,6 +10,7 @@ import logo from './logo.png';
 
 import {Formik,Form, yupToFormErrors} from 'formik';
 import { Container, Nav } from 'react-bootstrap';
+import RadioYesNo from '../RadioYesNo/RadioYesNo';
 
 
 function CarForm(){
@@ -44,8 +45,8 @@ function CarForm(){
   vehicleType:'',
   engineSize:'',
   additionalDrivers:'',
-  commercial:'',
-  registeredState:'',
+  commercial:'no',
+  registeredState:'no',
   vehicleValue:'',
   telephone:'',
   registrationDate:''
@@ -63,6 +64,7 @@ function CarForm(){
           </Nav>
         </Container>
       </Navbar>
+      <pre>{JSON.stringify(formik.values, null, 2)}</pre>
       <Container><h1 className="my-4 font-wright-bold-display-4">Car Quote Form</h1>
       {console.log(formik.values)}
     <Form>
@@ -76,8 +78,8 @@ function CarForm(){
       <TextField label="Vehicle Type" name="vehicleType" type="text"/>
       <TextField label="Engine Size" name="engineSize" type="text"/>
       <TextField label="Do you wish to add additional Drivers?" name="additionalDrivers" type="text"/>
-      <TextField label="Will the vehicle be used for commercial purposes?" name="commercial" type="text"/>
-      <TextField label="Will the vehicle be used outside the registered state?" name="registeredState" type="text"/>
+      <RadioYesNo label="Will the vehicle be used for commercial purposes?" name="commercial" type="radio" />
+      <RadioYesNo label="Will the vehicle be used outside the registered state?" name="registeredState" type="radio" />
       <RangeField label="What is the value of the vehicle?" name="vehicleValue" type="range" min="0" max ="50000" step="1000"/>
       <TextField label="Telephone Number" name="telephone" type="text"/>
       <TextField label="What is the date the vehicle was first registered?" name="registrationDate" type="text"/>
