@@ -9,7 +9,7 @@ import * as Yup from 'yup';
 import logo from './logo.png';
 
 import {Formik,Form, yupToFormErrors} from 'formik';
-import { Container } from 'react-bootstrap';
+import { Container, Nav } from 'react-bootstrap';
 
 
 function CarForm(){
@@ -57,6 +57,10 @@ function CarForm(){
           <Navbar.Brand>
             <img src={logo} alt="Allstate" height="100"/>
           </Navbar.Brand>
+          <Nav>
+            <Nav.Link href="/">Form</Nav.Link>
+            <Nav.Link href="/admin">Admin</Nav.Link>
+          </Nav>
         </Container>
       </Navbar>
       <Container><h1 className="my-4 font-wright-bold-display-4">Car Quote Form</h1>

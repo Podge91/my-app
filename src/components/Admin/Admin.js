@@ -9,6 +9,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
 import Alert from 'react-bootstrap/Alert'
+import { Nav } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
+import logo from './logo.png';
 
 import axios from 'axios';
 
@@ -95,7 +98,18 @@ function Admin(){
   }
   
 
-  return(
+  return(<>
+    <Navbar bg="primary" variant="dark">
+        <Container>
+          <Navbar.Brand>
+            <img src={logo} alt="Allstate" height="100"/>
+          </Navbar.Brand>
+          <Nav>
+            <Nav.Link href="/">Form</Nav.Link>
+            <Nav.Link href="/admin">Admin</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
   <Accordion>
   <Accordion.Item eventKey="0">
     <Accordion.Header>Get User Data</Accordion.Header>
@@ -170,7 +184,7 @@ function Admin(){
       </Form>
     </Accordion.Body>
   </Accordion.Item>
-</Accordion>);
+</Accordion></>);
 }
 
 export default Admin;
