@@ -11,10 +11,14 @@ const RadioYesNo = ({ label, ...props}) => {
   return (<>
   <label htmlFor={field.name}>{label}</label>
   <br/>
-  <Field as={Form.Select} name={field.name}>
+  <select className={`form-select shadow-none ${meta.touched && meta.error && 'is-invalid'}`} type="range" min={field.min} max={field.max} step={field.step}
+      {...field} {...props}
+      autoComplete="off">
+    <option value="">Select</option>
     <option value="yes">Yes</option>
     <option value="no">No</option>
-  </Field>
+  </select>
+  <ErrorMessage name={field.name}/>
   <br/>
   </>
   )
