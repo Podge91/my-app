@@ -11,6 +11,9 @@ import logo from './logo.png';
 import {Formik,Form, yupToFormErrors} from 'formik';
 import { Container, Nav } from 'react-bootstrap';
 import RadioYesNo from '../RadioYesNo/RadioYesNo';
+import SelectVehicle from '../SelectVehicle/SelectVehicle';
+import SelectEngineSize from '../SelectEngineSize/SelectEngineSize';
+import RadioAdditionalDrivers from '../RadioAdditionalDrivers/RadioAdditionalDrivers';
 
 
 function CarForm(){
@@ -22,8 +25,8 @@ function CarForm(){
     addressLine1: Yup.string().required('Required'),
     addressLine2: Yup.string().required('Required'),
     city: Yup.string().required('Required'),
-    vehicleType: Yup.string().required('Required'),
-    engineSize: Yup.string().required('Required'),
+    vehicleType: Yup.string().required('Please select vehicle type.'),
+    engineSize: Yup.string().required('Please select engine size.'),
     additionalDrivers: Yup.string().required('Required'),
     commercial: Yup.string().required('Required'),
     registeredState: Yup.string().required('Required'),
@@ -45,8 +48,8 @@ function CarForm(){
   vehicleType:'',
   engineSize:'',
   additionalDrivers:'',
-  commercial:'no',
-  registeredState:'no',
+  commercial:'',
+  registeredState:'',
   vehicleValue:'',
   telephone:'',
   registrationDate:''
@@ -75,9 +78,10 @@ function CarForm(){
       <TextField label="Address Line 2" name="addressLine2" type="text"/>
       <TextField label="City" name="city" type="text"/>
       <TextField label="Postcode" name="postcode" type="text"/>
-      <TextField label="Vehicle Type" name="vehicleType" type="text"/>
-      <TextField label="Engine Size" name="engineSize" type="text"/>
-      <TextField label="Do you wish to add additional Drivers?" name="additionalDrivers" type="text"/>
+      <SelectVehicle label="Vehicle Type" name="vehicleType" type="select"/>
+      <SelectEngineSize label="Engine Size" name="engineSize" type="select"/>
+      <RadioAdditionalDrivers label="Do you wish to add additional Drivers?" name="additionalDrivers" type="radio"/>
+      <br/>
       <RadioYesNo label="Will the vehicle be used for commercial purposes?" name="commercial" type="radio" />
       <RadioYesNo label="Will the vehicle be used outside the registered state?" name="registeredState" type="radio" />
       <RangeField label="What is the value of the vehicle?" name="vehicleValue" type="range" min="0" max ="50000" step="1000"/>
