@@ -11,7 +11,7 @@ const RadioAdditionalDrivers = ({ label,...props}) => {
   return(<>
   <label htmlFor={field.name}>{label}</label>
   <br/>
-  <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+  <div className="btn-group" role="group" aria-label="Basic radio toggle button group">
   <input className={`btn-check ${meta.touched && meta.error && 'is-invalid'}`} type="radio" name={field.name}
       {...field} {...props}
       autoComplete="off" value="0" id="btnradio1"/>

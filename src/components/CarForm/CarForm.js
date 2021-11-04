@@ -14,9 +14,13 @@ import RadioYesNo from '../RadioYesNo/RadioYesNo';
 import SelectVehicle from '../SelectVehicle/SelectVehicle';
 import SelectEngineSize from '../SelectEngineSize/SelectEngineSize';
 import RadioAdditionalDrivers from '../RadioAdditionalDrivers/RadioAdditionalDrivers';
+import { DatePickerField } from '../DatePickerField/DatePickerField';
 
 
 function CarForm(){
+
+  const quoteEndpoint = "http://localhost:8080/getQuote";
+  const testEndpoint = "https://6151d1934a5f22001701d46f.mockapi.io/api/capston"
 
   const validate = Yup.object({
     prefix: Yup.string().required('Required'),
@@ -53,7 +57,18 @@ function CarForm(){
   vehicleValue:'',
   telephone:'',
   registrationDate:''
-}}validationSchema={validate} >
+}}
+  validationSchema={validate}
+  onSubmit={async(values) =>{
+    axios.post(testEndpoint, values)
+         .then((r)=>{
+           alert(r.status)
+         })
+         .catch((e)=>{
+           alert(e)
+         })
+  }}
+>
   {formik =>(
     <div>
       <Navbar bg="primary" variant="dark">
@@ -69,11 +84,11 @@ function CarForm(){
       </Navbar>
       <pre>{JSON.stringify(formik.values, null, 2)}</pre>
       <Container><h1 className="my-4 font-wright-bold-display-4">Car Quote Form</h1>
-      {console.log(formik.values)}
     <Form>
       <TextField label="Prefix" name="prefix" type="text"/>
       <TextField label="First Name" name="fName" type="text"/>
       <TextField label="Last Name" name="lName" type="text"/>
+      <TextField label="Telephone Number" name="telephone" type="text"/>
       <TextField label="Address Line 1" name="addressLine1" type="text"/>
       <TextField label="Address Line 2" name="addressLine2" type="text"/>
       <TextField label="City" name="city" type="text"/>
@@ -85,9 +100,9 @@ function CarForm(){
       <RadioYesNo label="Will the vehicle be used for commercial purposes?" name="commercial" type="radio" />
       <RadioYesNo label="Will the vehicle be used outside the registered state?" name="registeredState" type="radio" />
       <RangeField label="What is the value of the vehicle?" name="vehicleValue" type="range" min="0" max ="50000" step="1000"/>
-      <TextField label="Telephone Number" name="telephone" type="text"/>
-      <TextField label="What is the date the vehicle was first registered?" name="registrationDate" type="text"/>
-      <button className="btn btn-dark mt-3">Submit</button>
+     
+      <DatePickerField name="registrationDate" label="What was the date of the vehicle's first registration?" type="date"/>
+      <button className="btn btn-dark mt-3" type="submit">Submit</button>
     </Form> </Container>
     </div>
    
