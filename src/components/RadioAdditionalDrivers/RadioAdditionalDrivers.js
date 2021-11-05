@@ -1,7 +1,7 @@
 import React from 'react';
 import './RadioAdditionalDrivers.css';
 import { useField,ErrorMessage,useFormikContext} from 'formik';
-import { ButtonGroup, ToggleButton} from 'react-bootstrap';
+import { ButtonGroup, ToggleButton,ToggleButtonGroup} from 'react-bootstrap';
 
 const RadioAdditionalDrivers = ({ label,...props}) => {
 
@@ -19,7 +19,7 @@ const RadioAdditionalDrivers = ({ label,...props}) => {
   return(<>
   <label htmlFor={field.name}>{label}</label>
   <br/>
-  <ButtonGroup className="mb-2">
+  <ToggleButtonGroup name={field.name}>
     {radios.map((radio,idx)=>(
       <ToggleButton 
         key={idx}
@@ -29,13 +29,12 @@ const RadioAdditionalDrivers = ({ label,...props}) => {
         name={field.name}
         value={radio.value}
         onChange={handleChange}
-        onBlur={handleBlur}
         checked={field.value === radio.value}
         >
           {radio.name}
         </ToggleButton>
     ))}
-  </ButtonGroup>
+  </ToggleButtonGroup>
 
 <ErrorMessage name={field.name}/>
 <br/>
