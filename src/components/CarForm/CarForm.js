@@ -19,6 +19,10 @@ import { DatePickerField } from '../DatePickerField/DatePickerField';
 
 function CarForm(){
 
+  const date = new Date();
+
+  
+
   const quoteEndpoint = "http://localhost:8080/getQuote";
   const testEndpoint = "https://6151d1934a5f22001701d46f.mockapi.io/api/capston"
 
@@ -36,7 +40,7 @@ function CarForm(){
     registeredState: Yup.string().required('Required'),
     vehicleValue: Yup.number().required('Required').positive().integer(),
     telephone: Yup.string().required('Required'),
-    registrationDate: Yup.string().required('Required'),
+    registrationDate: Yup.date().required('Please Enter a Date.').max(date),
     postcode: Yup.string().required('Required')
   })
   
@@ -54,7 +58,7 @@ function CarForm(){
   additionalDrivers:'',
   commercial:'',
   registeredState:'',
-  vehicleValue:'',
+  vehicleValue:'25000',
   telephone:'',
   registrationDate:''
 }}
