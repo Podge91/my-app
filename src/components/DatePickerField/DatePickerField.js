@@ -4,8 +4,10 @@ import DatePicker from "react-datepicker";
 import { Form, Row } from "react-bootstrap";
 
 export const DatePickerField = ({ label, ...props }) => {
+  
   const { handleChange,handleBlur } = useFormikContext();
   const [field,meta] = useField(props);
+  
   return (<>
     <label htmlFor={field.name}>{label}</label>
     <br />
