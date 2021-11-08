@@ -1,12 +1,12 @@
 import React from 'react';
 import './RadioAdditionalDrivers.css';
 import { useField,ErrorMessage,useFormikContext} from 'formik';
-import { ButtonGroup, ToggleButton,ToggleButtonGroup} from 'react-bootstrap';
+import { ToggleButton,ToggleButtonGroup} from 'react-bootstrap';
 
 const RadioAdditionalDrivers = ({ label,...props}) => {
 
-  const [field, meta] = useField(props);
-  const { handleChange,handleBlur } = useFormikContext();
+  const [field] = useField(props);
+  const { handleChange } = useFormikContext();
 
   const radios = [{name:'0', value:'0'},
                   {name:'1', value:'1'},
