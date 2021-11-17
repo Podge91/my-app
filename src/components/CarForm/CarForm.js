@@ -8,7 +8,7 @@ import axios from 'axios';
 import * as Yup from 'yup';
 import logo from './logo.png';
 
-import {Formik,Form, yupToFormErrors} from 'formik';
+import {Formik,Form} from 'formik';
 import { Container, Nav } from 'react-bootstrap';
 import RadioYesNo from '../RadioYesNo/RadioYesNo';
 import SelectVehicle from '../SelectVehicle/SelectVehicle';
@@ -23,13 +23,13 @@ function CarForm(){
 
   
 
-  const quoteEndpoint = "http://localhost:8080/getQuote";
+  const quoteEndpoint = "http://localhost:8080/quotes";
   const testEndpoint = "https://6151d1934a5f22001701d46f.mockapi.io/api/capston"
 
   const validate = Yup.object({
     prefix: Yup.string().required('Required'),
-    fName: Yup.string().required('Required'),
-    lName: Yup.string().required('Required'),
+    firstName: Yup.string().required('Required'),
+    lastName: Yup.string().required('Required'),
     addressLine1: Yup.string().required('Required'),
     addressLine2: Yup.string().required('Required'),
     city: Yup.string().required('Required'),
@@ -38,17 +38,17 @@ function CarForm(){
     additionalDrivers: Yup.string().required('Required'),
     commercial: Yup.string().required('Required'),
     registeredState: Yup.string().required('Required'),
-    vehicleValue: Yup.number().required('Required').positive().integer(),
+    currentValue: Yup.number().required('Required').positive().integer(),
     telephone: Yup.string().required('Required'),
-    registrationDate: Yup.date().required('Please Enter a Date.').max(date),
+    dateRegistered: Yup.date().required('Please Enter a Date.').max(date),
     postcode: Yup.string().required('Required')
   })
   
   return( 
 <Formik initialValues= {{
   prefix:'',
-  fName:'',
-  lName:'',
+  firstName:'',
+  lastName:'',
   addressLine1:'',
   addressLine2:'',
   city:'',
@@ -58,13 +58,13 @@ function CarForm(){
   additionalDrivers:'',
   commercial:'',
   registeredState:'',
-  vehicleValue:'25000',
+  currentValue:'25000',
   telephone:'',
-  registrationDate:''
+  dateRegistered:''
 }}
   validationSchema={validate}
   onSubmit={async(values) =>{
-    axios.post(testEndpoint, values)
+    axios.post(quoteEndpoint, values)
          .then((r)=>{
            alert(r.status)
          })
@@ -90,8 +90,8 @@ function CarForm(){
       <Container><h1 className="my-4 font-wright-bold-display-4">Car Quote Form</h1>
     <Form>
       <TextField label="Prefix" name="prefix" type="text"/>
-      <TextField label="First Name" name="fName" type="text"/>
-      <TextField label="Last Name" name="lName" type="text"/>
+      <TextField label="First Name" name="firstName" type="text"/>
+      <TextField label="Last Name" name="lastName" type="text"/>
       <TextField label="Telephone Number" name="telephone" type="text"/>
       <TextField label="Address Line 1" name="addressLine1" type="text"/>
       <TextField label="Address Line 2" name="addressLine2" type="text"/>
@@ -103,9 +103,9 @@ function CarForm(){
       <br/>
       <RadioYesNo label="Will the vehicle be used for commercial purposes?" name="commercial" type="radio" />
       <RadioYesNo label="Will the vehicle be used outside the registered state?" name="registeredState" type="radio" />
-      <RangeField label="What is the value of the vehicle?" name="vehicleValue" type="range" min="0" max ="50000" step="1000"/>
+      <RangeField label="What is the value of the vehicle?" name="currentValue" type="range" min="0" max ="50000" step="1000"/>
      
-      <DatePickerField name="registrationDate" label="What was the date of the vehicle's first registration?" type="date"/>
+      <DatePickerField name="dateRegistered" label="What was the date of the vehicle's first registration?" type="date"/>
       <button className="btn btn-dark mt-3" type="submit">Submit</button>
     </Form> </Container>
     </div>

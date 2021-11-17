@@ -14,7 +14,7 @@ export const DatePickerField = ({ label, ...props }) => {
 
       <Form.Control
         type="date"
-        name="registrationDate"
+        name="dateRegistered"
         onChange={handleChange}
         onBlur={handleBlur}
         value={field.value}
