@@ -1,4 +1,4 @@
-import { useField,ErrorMessage, Formik } from 'formik';
+import { useField,ErrorMessage } from 'formik';
 import React from 'react';
 import { Badge } from 'react-bootstrap';
 import './RangeField.css';

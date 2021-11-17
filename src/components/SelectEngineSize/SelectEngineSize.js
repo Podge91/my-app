@@ -1,6 +1,6 @@
 import React from 'react';
 import './SelectEngineSize.css';
-import { Field, useField,ErrorMessage} from 'formik';
+import { useField,ErrorMessage} from 'formik';
 
 const SelectEngineSize = ({ label, ...props}) => {
 
